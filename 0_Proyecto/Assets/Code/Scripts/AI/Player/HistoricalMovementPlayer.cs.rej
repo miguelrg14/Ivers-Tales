@@ -1,0 +1,86 @@
+diff a/Assets/Code/Scripts/AI/Player/HistoricalMovementPlayer.cs b/Assets/Code/Scripts/AI/Player/HistoricalMovementPlayer.cs	(rejected hunks)
+@@ -1,6 +1,8 @@
+ using System.Collections;
+ using System.Collections.Generic;
+ using UnityEngine;
++using static UnityEditor.Progress;
++
+ [DisallowMultipleComponent] //for not adding more than one
+ [RequireComponent(typeof(Player_controler))]
+ public class HistoricalMovementPlayer : MonoBehaviour
+@@ -12,7 +14,9 @@
+     [SerializeField]
+     [Range(0.1f, 5f)]
+     private float historicalPositionInterval = 0.1f;
+-
++    Vector3 item1;
++    Vector3 item2;
++    bool turnsForVectors=false;
+     public Vector3 averageVelocity
+     {
+         get
+@@ -29,8 +33,26 @@
+                 return Vector3.zero; 
+         }
+     }
++    public Vector3 averagePositions
++    {
++        get
++        {
++            Vector3 average = Vector3.zero;
++            foreach (Vector3 velocity in historicalPositions)
++                average += velocity;
++            average.y = 0;
++            Vector3 result = average / historicalPositions.Count;
++
++            if (!double.IsNaN(result.x) || !double.IsNaN(result.y) || !double.IsNaN(result.z)) //checks if the result is not nan, because in the first frame it is due to the queue is not created
++                return average / historicalPositions.Count;
++            else
++                return Vector3.zero;
++        }
++    }
+ 
+     private Queue<Vector3> historicalVelocities;
++    private Queue<Vector3> historicalPositions;
++
+     private float lasPositionTime;
+     private int maxQueueSize;
+ 
+@@ -40,6 +62,7 @@
+         player=GetComponent<Player_controler>();
+         maxQueueSize=Mathf.CeilToInt(1f / historicalPositionInterval * historicalPositionDuration);
+         historicalVelocities=new Queue<Vector3>(maxQueueSize);
++        historicalPositions=new Queue<Vector3>(maxQueueSize);
+     }
+ 
+     // Update is called once per frame
+@@ -50,9 +73,29 @@
+             if (historicalVelocities.Count==maxQueueSize)
+             {
+                 historicalVelocities.Dequeue();
++                historicalPositions.Dequeue();
+             }
+             historicalVelocities.Enqueue(player.ReturnVelocityRigidbody());
++            if (!turnsForVectors)
++            {
++                item1 = player.transform.position;
++                turnsForVectors = true;
++            }
++            else
++            {
++                item2 = player.transform.position;
++                turnsForVectors = false;
++
++            }
++            historicalPositions.Enqueue(player.transform.position);
+             lasPositionTime=Time.time;
+         }
+     }
++    public bool CompareTheLastVector3sPosition(float Epsilon=.1f)
++    {
++        if (Vector3.Distance(item1,item2)<Epsilon)
++            return false;
++        else
++           return true;
++    }
+ }

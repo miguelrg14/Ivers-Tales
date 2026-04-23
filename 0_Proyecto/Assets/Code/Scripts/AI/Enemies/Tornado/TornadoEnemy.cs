@@ -1,0 +1,245 @@
+using RenownedGames.AITree.Demo;
+using RenownedGames.AITree;
+using RenownedGames.Apex;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.VFX;
+
+public class TornadoEnemy : Enemy
+{
+
+    private RotationShootSpawnLocation shootSpawnLocation;
+    [Group("References")]
+    [SerializeField]
+    private BulletObjectPooling bulletObjectPooling;
+    [Group("Atributtes")]
+    [SerializeField]
+    float projectileSpeed = 2f;
+    [SerializeField]
+    private float stoppingDistanceValueShooting;    //depends on the radius of sensorShootDetection
+    [Group("Shoot Configs")]
+    [SerializeField]
+    [Range(0.05f, 10f)]
+    private float shootCooldowm=0.1f;
+    [Group("Debug")]
+    [SerializeField]
+    float timeCooldowm = 0;
+    [Group("Debug")]
+    [SerializeField]
+    bool firstAttack = false;
+
+    // Start is called before the first frame update
+    void Awake()
+    {
+        SetReferences();
+    }
+    protected override void SetReferences()
+    {
+        base.SetReferences();
+        stoppingDistanceValueShooting = sensorAttackDetection.gameObject.GetComponent<SphereCollider>().radius;
+        stoppingDistanceValueShooting -= 2;
+        shootSpawnLocation = GetComponent<RotationShootSpawnLocation>();
+        shootSpawnLocation.SetPlayer(ReturnPlayer());
+        agent.stoppingDistance = stoppingDistanceValueShooting;   //its set 2 m less 
+        if (useWander)
+        {
+            isWandering = true;
+            animator.SetBool("Move", true);
+        }
+    }
+    // Update is called once per frame
+    void Update()
+    {
+        if (!behaviourRunner)
+        {
+            return;
+
+        }
+        else
+        {
+            SetValuesBlackBoard();
+        }
+
+    }
+    void SetValuesBlackBoard()
+    {
+        Blackboard blackboard = behaviourRunner.GetBlackboard();
+        if (useMovementPrediction)
+        {
+            if (player.IsPlayerMoving())
+            {
+                SetBlackBoardValue(blackboard, "PlayerPosition", player.transform.position + player.ReturnAverageVelocity() * movementPredictionTime);
+                //if the player is moving, then uses movement prediction
+            }
+            else
+            {
+                SetBlackBoardValue(blackboard, "PlayerPosition", player.transform.position);
+            }
+
+        }
+        else
+        {
+            SetBlackBoardValue(blackboard, "PlayerPosition", player.transform.position);
+
+        }
+        SetBlackBoardValue(blackboard, "Player", player.transform);
+        if (useWander)
+        {
+            SetBlackBoardValue(blackboard, "IsWander", isWandering);
+
+        }
+        SetBlackBoardValue(blackboard, "IsInChaseRange", isInChaseRange);
+        SetBlackBoardValue(blackboard, "IsInShootRange", isInAttackRange);
+        SetBlackBoardValue(blackboard, "FirstTimeShoot", firstAttack);
+        //SetBlackBoardValue(blackboard, "AcceptableRadiusForShooting", stoppingDistanceValueShooting-2);
+        //SetBlackBoardValue(blackboard, "CanShoot", lastShootTime + shootCooldowm <= Time.time); //if the time for the next melee attack is passed then, the enemy attacks 
+        CanShoot(blackboard);
+        SetBlackBoardValue(blackboard, "ShootSpawnLocation", shootSpawnLocation.transform.position);
+        //SetBlackBoardValue(blackboard, "RotationShoot", shootSpawnLocation.rotation);
+    }
+
+    #region Sensors Events
+
+    protected override void ChaseSensorOffOnPlayerDetection(Vector3 lastKnownPosition)
+    {
+        base.ChaseSensorOffOnPlayerDetection(lastKnownPosition);
+        animator.SetBool("Move", false);
+    }
+    protected override void ChaseSensorOnOnPlayerDetection(Transform player)
+    {
+        base.ChaseSensorOnOnPlayerDetection(player);
+        agent.stoppingDistance = stoppingDistanceValueShooting;
+        animator.SetBool("Move", true);
+
+    }
+    protected override void AttackSensorOffOnPlayerDetection(Vector3 lastKnownPosition)
+    {
+        base.AttackSensorOffOnPlayerDetection(lastKnownPosition);
+        shootSpawnLocation.enabledRotation = false;
+        firstAttack = false;
+
+    }
+
+    protected override void AttackSensorOnOnPlayerDetection(Transform player)
+    {
+        base.AttackSensorOnOnPlayerDetection(player);
+        if (!isDead)
+        {
+            agent.stoppingDistance = stoppingDistanceValueShooting;
+            shootSpawnLocation.enabledRotation = true;
+            animator.SetBool("Move", false);
+            firstAttack = true;
+        }
+    }
+    #endregion
+    #region Messages From Tree
+
+    protected override void OnAttack()
+    {
+        base.OnAttack();
+        timeCooldowm = 0;
+
+        StartCoroutine(ShootAnimationSetCorrectTimes());
+
+        audioSource.PlayOneShot(attack_clip);
+
+    }
+    protected override void OnWander()
+    {
+        agent.stoppingDistance = 0;
+        base.OnWander();
+    }
+    IEnumerator ShootAnimationSetCorrectTimes()
+    {
+        animator.SetTrigger("Attack");
+        //yield return new WaitForSeconds(0.35f);
+        //mortar.actualGOBullet = bulletObjectPooling.GetPooledObject();
+        //mortar.Launch(player.transform.position, shootSpawnLocation.transform.localPosition);
+        yield return null;
+        FireProjectile(Vector3.Normalize(shootSpawnLocation.direction));
+        canAttack = false;
+        if (firstAttack)
+        {
+            firstAttack = false;
+        }
+        //timeCooldowm = Time.time;  //sets the last melee to the actual time when the attack is enabled
+
+    }
+    public void Move()
+    {
+
+        Vector3 positionPlayer = AIManager.Instance.ReturnNearestPoint(transform.position);
+
+        agent.SetDestination(positionPlayer);
+
+    }
+    #endregion
+    protected override void SetAnimationsDurations()
+    {
+        behaviourRunner.GetBlackboard().TryGetKey("IdleAnimationAmountTime", out FloatKey animationIdleAmountTime);
+        animationIdleAmountTime.SetValue(idleClip.length);
+        behaviourRunner.GetBlackboard().TryGetKey("ShootAnimationAmountTime", out FloatKey animationShootAmountTime);
+        animationShootAmountTime.SetValue(attackClip.length);
+
+    }
+    void CanShoot(Blackboard blackboard)
+    {
+
+        timeCooldowm += Time.deltaTime;
+        if (firstAttack)
+        {
+            SetBlackBoardValue(blackboard, "CanShoot", true); //if the time for the next melee attack is passed then, the enemy attacks 
+
+        }
+        else if (timeCooldowm <= shootCooldowm- attackClip.length)
+        {
+            SetBlackBoardValue(blackboard, "CanShoot", false);
+        }
+        else
+        {
+            SetBlackBoardValue(blackboard, "CanShoot", true); //if the time for the next melee attack is passed then, the enemy attacks 
+            //timeCooldowm = 0;
+
+        }
+
+    }
+    public override void RecieveDamage(int damage)
+    {
+        base.RecieveDamage(damage);
+
+        if (health == 0)
+        {
+            StopAllCoroutines();
+            isDead = true;
+            audioSource.PlayOneShot(death_clip);
+
+            //animator.enabled = false;
+            //agent.enabled = false;
+            //onDieExplosionLongDistanceEnemy.gameObject.SetActive(true);
+            vfxManager.ActivateVFXEnemyDie(this.transform.position, Quaternion.identity);
+            behaviourRunner.enabled = false;
+            agent.enabled = false;
+            animator.SetTrigger("Die");
+            shootSpawnLocation.enabledRotation = false;
+            disolveDeadEffect.StartDissableDeadEffect(this.gameObject);
+            this.enabled = false;
+
+        }
+    }
+    void FireProjectile(Vector3 direction)
+    {
+        if (health != 0)
+        {
+            audioSource.PlayOneShot(attack_clip);
+            GameObject projectile = bulletObjectPooling.GetPooledObject();
+            projectile.transform.position = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
+            projectile.transform.rotation = Quaternion.LookRotation(direction);
+            projectile.SetActive(true);
+            Rigidbody rb = projectile.GetComponent<Rigidbody>();
+            rb.velocity = direction * projectileSpeed;
+        }
+
+    }
+
+}

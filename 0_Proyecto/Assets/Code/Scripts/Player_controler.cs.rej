@@ -1,0 +1,12 @@
+diff a/Assets/Code/Scripts/Player_controler.cs b/Assets/Code/Scripts/Player_controler.cs	(rejected hunks)
+@@ -107,6 +107,10 @@
+ 
+         return historicalMovementPlayer.averageVelocity;
+     }
++    public bool IsPlayerMoving()
++    {
++        return historicalMovementPlayer.CompareTheLastVector3sPosition();
++    }
+     public void OnDamage(int damage)
+     {
+         health-=damage;
