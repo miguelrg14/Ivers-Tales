@@ -1,0 +1,286 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9062028092258086604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c25e407b7ce80ad48afc03654956a1b0, type: 3}
+  m_Name: Self
+  m_EditorClassIdentifier: 
+  category: 
+  description: 
+  sync: 0
+  isLocal: 0
+  value: {fileID: 0}
+--- !u!114 &-7039332822129027870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd402de4eb7669046830c326d89b03b4, type: 3}
+  m_Name: SpeedChase
+  m_EditorClassIdentifier: 
+  category: Movement
+  description: 
+  sync: 0
+  isLocal: 0
+  value: 0
+--- !u!114 &-7001603983651671053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b97a1cab3e25e246a1321c1c6515ce3, type: 3}
+  m_Name: IsInShootRange
+  m_EditorClassIdentifier: 
+  category: Shoot
+  description: 
+  sync: 0
+  isLocal: 0
+  value: 0
+--- !u!114 &-5378091537762344484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd402de4eb7669046830c326d89b03b4, type: 3}
+  m_Name: SpeedWander
+  m_EditorClassIdentifier: 
+  category: Wander
+  description: 
+  sync: 0
+  isLocal: 0
+  value: 0
+--- !u!114 &-4099136184548588658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81988d2f5a5807241b45a076853c02f1, type: 3}
+  m_Name: ShootSpawnLocation
+  m_EditorClassIdentifier: 
+  category: Shoot
+  description: 
+  sync: 0
+  isLocal: 0
+  value: {x: 0, y: 0, z: 0}
+--- !u!114 &-3082437450367574003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b97a1cab3e25e246a1321c1c6515ce3, type: 3}
+  m_Name: FirstTimeShoot
+  m_EditorClassIdentifier: 
+  category: Shoot
+  description: 
+  sync: 0
+  isLocal: 0
+  value: 0
+--- !u!114 &-1109507758363713459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72fbaec49b8225645904ab749fbd5295, type: 3}
+  m_Name: RotationShoot
+  m_EditorClassIdentifier: 
+  category: Shoot
+  description: 
+  sync: 0
+  isLocal: 0
+  value: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a71c596e8b0944b909bbf44cf66c50, type: 3}
+  m_Name: LongDistanceEnemyBB
+  m_EditorClassIdentifier: 
+  keys:
+  - {fileID: 4375366289173291817}
+  - {fileID: 4391089520947717809}
+  - {fileID: 6349666540279871900}
+  - {fileID: 5236701911670404313}
+  - {fileID: -7001603983651671053}
+  - {fileID: 3891190802818984847}
+  - {fileID: 8605689050209705547}
+  - {fileID: -1109507758363713459}
+  - {fileID: -4099136184548588658}
+  - {fileID: 3368735267032318286}
+  - {fileID: -9062028092258086604}
+  - {fileID: 5786361966692316997}
+  - {fileID: -5378091537762344484}
+  - {fileID: -7039332822129027870}
+  - {fileID: -3082437450367574003}
+  parent: {fileID: 0}
+--- !u!114 &3368735267032318286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd402de4eb7669046830c326d89b03b4, type: 3}
+  m_Name: AcceptableRadiusForShooting
+  m_EditorClassIdentifier: 
+  category: Shoot
+  description: 
+  sync: 0
+  isLocal: 0
+  value: 0
+--- !u!114 &3891190802818984847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b97a1cab3e25e246a1321c1c6515ce3, type: 3}
+  m_Name: CanShoot
+  m_EditorClassIdentifier: 
+  category: Shoot
+  description: 
+  sync: 0
+  isLocal: 0
+  value: 0
+--- !u!114 &4375366289173291817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1c717f2aa08147478edeef178e4461d, type: 3}
+  m_Name: Player
+  m_EditorClassIdentifier: 
+  category: Movement
+  description: 
+  sync: 0
+  isLocal: 0
+  value: {fileID: 0}
+--- !u!114 &4391089520947717809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81988d2f5a5807241b45a076853c02f1, type: 3}
+  m_Name: PlayerPosition
+  m_EditorClassIdentifier: 
+  category: Movement
+  description: 
+  sync: 0
+  isLocal: 0
+  value: {x: 0, y: 0, z: 0}
+--- !u!114 &5236701911670404313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd402de4eb7669046830c326d89b03b4, type: 3}
+  m_Name: IdleAnimationAmountTime
+  m_EditorClassIdentifier: 
+  category: Animation
+  description: 
+  sync: 0
+  isLocal: 0
+  value: 0
+--- !u!114 &5786361966692316997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b97a1cab3e25e246a1321c1c6515ce3, type: 3}
+  m_Name: IsWander
+  m_EditorClassIdentifier: 
+  category: Wander
+  description: 
+  sync: 0
+  isLocal: 0
+  value: 0
+--- !u!114 &6349666540279871900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b97a1cab3e25e246a1321c1c6515ce3, type: 3}
+  m_Name: IsInChaseRange
+  m_EditorClassIdentifier: 
+  category: Movement
+  description: 
+  sync: 0
+  isLocal: 0
+  value: 0
+--- !u!114 &8605689050209705547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd402de4eb7669046830c326d89b03b4, type: 3}
+  m_Name: ShootAnimationAmountTime
+  m_EditorClassIdentifier: 
+  category: Animation
+  description: 
+  sync: 0
+  isLocal: 0
+  value: 0

@@ -1,0 +1,103 @@
+name: CI
+
+on:
+  push:
+    branches: ["**"]
+    tags-ignore: ["v*"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  core:
+    name: Core logic (.NET build + tests)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restore
+        run: dotnet restore IversTales.sln
+
+      - name: Build
+        run: dotnet build IversTales.sln --configuration Release --no-restore
+
+      - name: Unit tests
+        run: >
+          dotnet test IversTales.sln --configuration Release --no-build
+          --logger "trx;LogFileName=core-tests.trx" --logger "console;verbosity=normal"
+          --results-directory TestResults
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: core-test-results
+          path: TestResults
+
+  unity-secrets:
+    name: Check Unity licence
+    runs-on: ubuntu-latest
+    outputs:
+      available: ${{ steps.check.outputs.available }}
+    steps:
+      - id: check
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+        run: |
+          if [ -n "$UNITY_LICENSE" ] && [ -n "$UNITY_EMAIL" ]; then
+            echo "available=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "available=false" >> "$GITHUB_OUTPUT"
+            echo "::notice title=Unity jobs skipped::Add the UNITY_LICENSE, UNITY_EMAIL and UNITY_PASSWORD secrets to run the Unity tests and the Windows build (see README)."
+          fi
+
+  unity:
+    name: Unity tests + Windows build
+    needs: [core, unity-secrets]
+    if: needs.unity-secrets.outputs.available == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      checks: write   # unity-test-runner publishes the test report as a check run
+    env:
+      UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+      UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+      UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cache Unity Library
+        uses: actions/cache@v4
+        with:
+          path: IversTales/Library
+          key: library-${{ hashFiles('IversTales/Assets/**', 'IversTales/Packages/**', 'IversTales/ProjectSettings/**') }}
+          restore-keys: library-
+
+      - name: Edit mode and play mode tests
+        uses: game-ci/unity-test-runner@v4
+        with:
+          projectPath: IversTales
+          testMode: all
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          checkName: Unity test results
+
+      - name: Build for Windows
+        uses: game-ci/unity-builder@v4
+        with:
+          projectPath: IversTales
+          targetPlatform: StandaloneWindows64
+          buildName: IversTales
+          # The test step leaves coverage/artifact files in the workspace.
+          allowDirtyBuild: true
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: IversTales-Windows
+          path: build/StandaloneWindows64

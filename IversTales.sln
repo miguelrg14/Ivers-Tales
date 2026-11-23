@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{964F69D3-0FEC-4A37-8FE2-309A838F6B2D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IversTales.Core", "src\IversTales.Core\IversTales.Core.csproj", "{BFA3381C-9A14-4C35-A8CC-010535C019BC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{8B53A1E0-9BFB-4705-B918-9EBAB7BE891F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IversTales.Core.Tests", "tests\IversTales.Core.Tests\IversTales.Core.Tests.csproj", "{43941CAE-6471-4619-91BB-FC7EEB4BD85B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BFA3381C-9A14-4C35-A8CC-010535C019BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFA3381C-9A14-4C35-A8CC-010535C019BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFA3381C-9A14-4C35-A8CC-010535C019BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFA3381C-9A14-4C35-A8CC-010535C019BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43941CAE-6471-4619-91BB-FC7EEB4BD85B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43941CAE-6471-4619-91BB-FC7EEB4BD85B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43941CAE-6471-4619-91BB-FC7EEB4BD85B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43941CAE-6471-4619-91BB-FC7EEB4BD85B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BFA3381C-9A14-4C35-A8CC-010535C019BC} = {964F69D3-0FEC-4A37-8FE2-309A838F6B2D}
+		{43941CAE-6471-4619-91BB-FC7EEB4BD85B} = {8B53A1E0-9BFB-4705-B918-9EBAB7BE891F}
+	EndGlobalSection
+EndGlobal

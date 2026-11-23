@@ -1,0 +1,35 @@
+* text=auto
+
+# Code
+*.cs text diff=csharp
+
+# Unity YAML (Smart Merge)
+*.unity      merge=unityyamlmerge eol=lf
+*.prefab     merge=unityyamlmerge eol=lf
+*.asset      merge=unityyamlmerge eol=lf
+*.meta       merge=unityyamlmerge eol=lf
+*.mat        merge=unityyamlmerge eol=lf
+*.anim       merge=unityyamlmerge eol=lf
+*.controller merge=unityyamlmerge eol=lf
+*.mixer      merge=unityyamlmerge eol=lf
+
+# Binary files (stored in plain Git, no LFS)
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.tga  binary
+*.tif  binary
+*.psd  binary
+*.ogg  binary
+*.wav  binary
+*.mp3  binary
+*.mp4  binary
+*.flac binary
+*.flp  binary
+*.ttf  binary
+*.otf  binary
+*.fbx  binary
+*.pdf  binary
+*.xlsx binary
+*.dll  binary

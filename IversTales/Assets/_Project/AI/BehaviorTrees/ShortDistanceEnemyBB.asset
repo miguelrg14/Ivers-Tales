@@ -1,0 +1,268 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9091895138656417450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c25e407b7ce80ad48afc03654956a1b0, type: 3}
+  m_Name: Self
+  m_EditorClassIdentifier: 
+  category: 
+  description: 
+  sync: 0
+  isLocal: 0
+  value: {fileID: 0}
+--- !u!114 &-8165394565159105778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1c717f2aa08147478edeef178e4461d, type: 3}
+  m_Name: Player
+  m_EditorClassIdentifier: 
+  category: Movement
+  description: 
+  sync: 0
+  isLocal: 0
+  value: {fileID: 0}
+--- !u!114 &-6465122717746141426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b97a1cab3e25e246a1321c1c6515ce3, type: 3}
+  m_Name: CanMelee
+  m_EditorClassIdentifier: 
+  category: Melee
+  description: 
+  sync: 0
+  isLocal: 0
+  value: 0
+--- !u!114 &-4834612451300269654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd402de4eb7669046830c326d89b03b4, type: 3}
+  m_Name: SpeedWander
+  m_EditorClassIdentifier: 
+  category: Wander
+  description: 
+  sync: 0
+  isLocal: 0
+  value: 0
+--- !u!114 &-4636250652342359507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81988d2f5a5807241b45a076853c02f1, type: 3}
+  m_Name: CircleTargetPosition
+  m_EditorClassIdentifier: 
+  category: Melee
+  description: 
+  sync: 0
+  isLocal: 0
+  value: {x: 0, y: 0, z: 0}
+--- !u!114 &-3605632120074320559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b97a1cab3e25e246a1321c1c6515ce3, type: 3}
+  m_Name: IsChasingPlayerAlone
+  m_EditorClassIdentifier: 
+  category: Melee
+  description: 
+  sync: 0
+  isLocal: 0
+  value: 0
+--- !u!114 &-3589385834210314696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b97a1cab3e25e246a1321c1c6515ce3, type: 3}
+  m_Name: IsInMeleeRange
+  m_EditorClassIdentifier: 
+  category: Melee
+  description: 
+  sync: 0
+  isLocal: 0
+  value: 0
+--- !u!114 &-1186013039344070591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd402de4eb7669046830c326d89b03b4, type: 3}
+  m_Name: SpeedChase
+  m_EditorClassIdentifier: 
+  category: Movement
+  description: 
+  sync: 0
+  isLocal: 0
+  value: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a71c596e8b0944b909bbf44cf66c50, type: 3}
+  m_Name: ShortDistanceEnemyBB
+  m_EditorClassIdentifier: 
+  keys:
+  - {fileID: -9091895138656417450}
+  - {fileID: -8165394565159105778}
+  - {fileID: 9199473154306796314}
+  - {fileID: 7033288131389070328}
+  - {fileID: 1736780994656317795}
+  - {fileID: 2230970242836110038}
+  - {fileID: -3589385834210314696}
+  - {fileID: -6465122717746141426}
+  - {fileID: -4636250652342359507}
+  - {fileID: -4834612451300269654}
+  - {fileID: 8683553620597838936}
+  - {fileID: -3605632120074320559}
+  - {fileID: 8939848010459881206}
+  - {fileID: -1186013039344070591}
+  parent: {fileID: 0}
+--- !u!114 &1736780994656317795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81988d2f5a5807241b45a076853c02f1, type: 3}
+  m_Name: PlayerPosition
+  m_EditorClassIdentifier: 
+  category: Movement
+  description: 
+  sync: 0
+  isLocal: 0
+  value: {x: 0, y: 0, z: 0}
+--- !u!114 &2230970242836110038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd402de4eb7669046830c326d89b03b4, type: 3}
+  m_Name: AttackAnimationAmountTime
+  m_EditorClassIdentifier: 
+  category: Animation
+  description: 
+  sync: 0
+  isLocal: 0
+  value: 0
+--- !u!114 &7033288131389070328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd402de4eb7669046830c326d89b03b4, type: 3}
+  m_Name: IdleAnimationAmountTime
+  m_EditorClassIdentifier: 
+  category: Animation
+  description: 
+  sync: 0
+  isLocal: 0
+  value: 0
+--- !u!114 &8683553620597838936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b97a1cab3e25e246a1321c1c6515ce3, type: 3}
+  m_Name: IsWander
+  m_EditorClassIdentifier: 
+  category: Wander
+  description: 
+  sync: 0
+  isLocal: 0
+  value: 0
+--- !u!114 &8939848010459881206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd402de4eb7669046830c326d89b03b4, type: 3}
+  m_Name: AcceptableRadiusMelee
+  m_EditorClassIdentifier: 
+  category: Melee
+  description: 
+  sync: 0
+  isLocal: 0
+  value: 0
+--- !u!114 &9199473154306796314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b97a1cab3e25e246a1321c1c6515ce3, type: 3}
+  m_Name: IsInChaseRange
+  m_EditorClassIdentifier: 
+  category: Movement
+  description: 
+  sync: 0
+  isLocal: 0
+  value: 0

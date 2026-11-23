@@ -1,0 +1,23 @@
+Copyright (c) 2023-2024 IguanaGo Studios
+(Miguel Rodríguez Gallego, Lucas García Domínguez, Iago López Gómez,
+Ariel Díaz González, Alicia Díaz Trabanco, Paloma Diosdado, Celia Rodríguez,
+Maya) and NeoMedia Music.
+
+All rights reserved.
+
+This repository is published as a portfolio of a student team project. The
+source code, art, music and documents may be viewed for evaluation purposes but
+may not be copied, modified, redistributed or used in other projects without
+written permission from the authors.
+
+Third-party content in IversTales/Assets/ThirdParty and
+IversTales/Assets/TextMesh Pro is NOT covered by this notice and remains under
+its own licence:
+
+- UnityHFSM (MIT) - see ThirdParty/UnityHFSM/LICENSE.md
+- ExLib by Renowned Games (Apache 2.0) - see ThirdParty/RenownedGames/ExLib/LICENSE
+- AI Tree and Apex by Renowned Games - Unity Asset Store EULA
+- Hyper Casual FX Pack Vol.1 - Unity Asset Store EULA
+- Ultimate 10+ Shaders - Unity Asset Store EULA
+- Unity Particle Pack - Unity Asset Store EULA
+- TextMesh Pro - Unity Companion License
